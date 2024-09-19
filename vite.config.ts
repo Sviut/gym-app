@@ -15,20 +15,22 @@ export default defineConfig({
         'apple-touch-icon.png',
       ],
       manifest: {
-        name: 'My PWA App',
-        short_name: 'PWA',
-        description: 'My awesome PWA with React, Tailwind and ShadCN',
+        name: 'Gym App',
+        short_name: 'Gym App',
+        description: 'My awesome Gym App',
+        display: 'standalone',
+        orientation: 'portrait',
         theme_color: '#ffffff',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: 'pwa.webp', // WebP иконка
             sizes: '192x192',
-            type: 'image/png',
+            type: 'image/webp',
           },
           {
-            src: 'pwa-512x512.png',
+            src: 'pwa.webp', // WebP иконка
             sizes: '512x512',
-            type: 'image/png',
+            type: 'image/webp',
           },
         ],
       },
