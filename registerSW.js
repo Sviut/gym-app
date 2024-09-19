@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/gym-appsw.js', { scope: '/gym-app' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('https://sviut.github.io/gym-appsw.js', { scope: 'https://sviut.github.io/gym-app' })})}
