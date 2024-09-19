@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import ErrorPage from '@/pages/error-page.tsx'
 import App from '@/App.tsx'
+import ProgramsPage from '@/pages/programs-page.tsx'
 
 export const PAGES = {
   MAIN: {
@@ -8,7 +9,7 @@ export const PAGES = {
     path: '/',
   },
   PROGRAMS: {
-    title: 'Programs',
+    title: 'Тренировочные дни',
     path: '/programs',
   },
 } as const
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: PAGES.PROGRAMS.path,
-        element: <div>{PAGES.PROGRAMS.title}</div>,
+        element: <ProgramsPage />,
       },
     ],
   },

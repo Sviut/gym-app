@@ -21,7 +21,9 @@ const Header = () => {
         Назад
       </Button>
 
-      <div className={'absolute left-1/2 translate-x-[-50%]'}>{title}</div>
+      <div className={'absolute left-1/2 translate-x-[-50%] font-bold'}>
+        {title}
+      </div>
     </div>
   )
 }

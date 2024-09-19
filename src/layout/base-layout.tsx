@@ -1,6 +1,5 @@
 import { FC, ReactNode } from 'react'
 import NavBar from '@/components/nav-bar.tsx'
-import Header from '@/components/header'
 
 interface BaseLayoutProps {
   children: ReactNode
@@ -9,10 +8,7 @@ interface BaseLayoutProps {
 const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
   return (
     <div className={'flex min-h-screen flex-col'}>
-      <Header />
-
-      <div className={'flex-grow'}>{children}</div>
-
+      <div className={'flex flex-grow'}>{children}</div>
       <NavBar />
     </div>
   )
