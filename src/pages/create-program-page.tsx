@@ -10,10 +10,10 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form'
-import { Trash } from 'lucide-react'
+import { Check, PlusCircle, Trash } from 'lucide-react'
 import Header from '@/components/header.tsx'
+import PageContainer from '@/layout/page-container.tsx'
 
-// Схема валидации с массивом
 const FormSchema = z.object({
   tasks: z.array(
     z.object({
@@ -32,23 +32,27 @@ const CreateProgramPage = () => {
 
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: 'tasks', // Массив с полями
+    name: 'tasks',
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data)
-    // Место для отправки данных или уведомления
   }
 
   return (
     <>
-      <Header title={'Добавить тренировку'} />
-      <div className={''}>
+      <Header
+        isBackButton
+        title={'Добавить тренировку'}
+        actionButton={
+          <Button variant={'ghost'} onClick={form.handleSubmit(onSubmit)}>
+            <Check />
+          </Button>
+        }
+      />
+      <PageContainer isHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className='w-full space-y-6'
-          >
+          <form className='w-full space-y-6'>
             {fields.map((field, index) => (
               <FormField
                 key={field.id}
@@ -76,16 +80,17 @@ const CreateProgramPage = () => {
                 )}
               />
             ))}
-
-            {/* Кнопка для добавления новых инпутов */}
-            <Button type='button' onClick={() => append({ taskName: '' })}>
-              Add User
-            </Button>
-
-            <Button type='submit'>Submit</Button>
           </form>
         </Form>
-      </div>
+
+        <Button
+          variant={'ghost'}
+          size={'icon'}
+          className={'m-auto mt-4 flex justify-center'}
+        >
+          <PlusCircle onClick={() => append({ taskName: '' })} color={'gray'} />
+        </Button>
+      </PageContainer>
     </>
   )
 }
