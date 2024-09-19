@@ -1,17 +1,20 @@
-import Header from '@/components/header.tsx'
 import { PlusCircle } from 'lucide-react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
+import { PAGES } from '@/pages/router.tsx'
+import Header from '@/components/header.tsx'
 
 const ProgramsPage = () => {
   return (
     <div className={'relative flex-grow'}>
-      <Header />
+      <Header title={'Добавить тренировку'} />
       ProgramsPage
       <Outlet />
-      <PlusCircle
-        size={'44'}
-        className={'absolute bottom-20 right-4 rounded-3xl'}
-      />
+      <Link to={PAGES.CREATE_PROGRAM.path}>
+        <PlusCircle
+          size={'44'}
+          className={'absolute bottom-20 right-4 rounded-3xl'}
+        />
+      </Link>
     </div>
   )
 }
