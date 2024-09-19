@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react'
+import NavBar from '@/components/nav-bar.tsx'
 
 interface BaseLayoutProps {
   children: ReactNode
@@ -11,7 +12,7 @@ const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
 
       <div className={'flex-grow'}>{children}</div>
 
-      <nav>nav</nav>
+      <NavBar />
     </div>
   )
 }
