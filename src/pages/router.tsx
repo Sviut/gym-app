@@ -20,24 +20,27 @@ export const PAGES = {
   },
 } as const
 
-export const router = createBrowserRouter([
-  { errorElement: <ErrorPage /> },
-  {
-    path: PAGES.MAIN.path,
-    element: <App />,
-    children: [
-      {
-        path: PAGES.MAIN.path,
-        element: <MainPage />,
-      },
-      {
-        path: PAGES.PROGRAMS.path,
-        element: <ProgramsPage />,
-      },
-      {
-        path: PAGES.CREATE_PROGRAM.path,
-        element: <CreateProgramPage />,
-      },
-    ],
-  },
-])
+export const router = createBrowserRouter(
+  [
+    { errorElement: <ErrorPage /> },
+    {
+      path: PAGES.MAIN.path,
+      element: <App />,
+      children: [
+        {
+          path: PAGES.MAIN.path,
+          element: <MainPage />,
+        },
+        {
+          path: PAGES.PROGRAMS.path,
+          element: <ProgramsPage />,
+        },
+        {
+          path: PAGES.CREATE_PROGRAM.path,
+          element: <CreateProgramPage />,
+        },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL }
+)
