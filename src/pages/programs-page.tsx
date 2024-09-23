@@ -12,7 +12,7 @@ const ProgramsPage = () => {
       <Link to={PAGES.CREATE_PROGRAM.path}>
         <PlusCircle
           size={'44'}
-          className={'absolute bottom-20 right-4 rounded-3xl'}
+          className={'absolute bottom-4 right-4 rounded-3xl'}
         />
       </Link>
     </div>

@@ -7,7 +7,7 @@ interface BaseLayoutProps {
 
 const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
   return (
-    <div className={'flex min-h-screen flex-col pb-[70px]'}>
+    <div className={'flex min-h-screen flex-col pb-[55px]'}>
       {children}
       <NavBar />
     </div>
