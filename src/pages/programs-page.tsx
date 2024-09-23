@@ -6,7 +6,7 @@ import Header from '@/components/header.tsx'
 const ProgramsPage = () => {
   return (
     <div className={'relative flex-grow'}>
-      <Header title={'Добавить тренировку'} />
+      <Header title={PAGES.PROGRAMS.title} />
       ProgramsPage
       <Outlet />
       <Link to={PAGES.CREATE_PROGRAM.path}>
