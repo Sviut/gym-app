@@ -1,13 +1,23 @@
 import useLocalStorage from '@/hooks/use-local-storage.ts'
-import { SetValue } from '@/types/workout-data.ts'
 
-export interface WorkoutDay {
+export interface SetValue {
+  count: number
+  weight: number
+}
+
+export interface Exercise {
   id: string
   name: string
   sets: SetValue[]
 }
 
-interface Program {
+export interface WorkoutDay {
+  id: string
+  name: string
+  exercises: Exercise[]
+}
+
+export interface Program {
   workoutDays: WorkoutDay[]
 }
 
@@ -53,6 +63,7 @@ export const useProgramData = () => {
   }
 
   return {
+    program,
     addWorkoutDay,
     getWorkoutDayById,
     deleteWorkoutDayById,

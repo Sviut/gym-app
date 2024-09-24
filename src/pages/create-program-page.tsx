@@ -1,8 +1,6 @@
-import { Input } from '@/components/ui/input.tsx'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { z } from 'zod'
-import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -14,11 +12,12 @@ import { v4 as uuid } from 'uuid'
 import { Check, PlusCircle, Trash } from 'lucide-react'
 import Header from '@/components/header.tsx'
 import PageContainer from '@/layout/page-container.tsx'
-import useLocalStorage from '@/hooks/use-local-storage.ts'
-import { Exercise, Program, WorkoutData } from '@/types/workout-data.ts'
 import { cn } from '@/lib/utils.ts'
 import { useNavigate } from 'react-router-dom'
 import { PAGES } from '@/pages/router.tsx'
+import { useProgramData } from '@/hooks/use-program-data.ts'
+import { Button } from '@/components/ui/button.tsx'
+import { Input } from '@/components/ui/input.tsx'
 
 const FormSchema = z.object({
   name: z.string().min(1, { message: 'Введите название тренировки' }),
@@ -31,56 +30,18 @@ const FormSchema = z.object({
   ),
 })
 
-const initialValues: Program = {
-  name: '',
-  id: uuid(),
-  workoutData: { order: [], exercisesById: {} },
-}
-
 const CreateProgramPage = () => {
   const navigate = useNavigate()
-  const [program, setProgram] = useLocalStorage<Program>(
-    'program',
-    initialValues
-  )
-
-  const getDefaultValues = () => {
-    const { id, name, workoutData } = program
-    const exercises = workoutData.order.map(
-      (id) => workoutData.exercisesById[id]
-    )
-
-    return {
-      name,
-      id,
-      exercises,
-    }
-  }
+  const { addWorkoutDay } = useProgramData()
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: getDefaultValues(),
+    defaultValues: { name: '', id: uuid(), exercises: [] },
   })
 
   const onSubmit = ({ id, name, exercises }: z.infer<typeof FormSchema>) => {
-    const exercisesById: { [key: string]: Exercise } = {}
-
-    for (const exercise of exercises) {
-      exercisesById[exercise.id] = { ...exercise, sets: [] }
-    }
-
-    const workoutData: WorkoutData = {
-      order: exercises.map(({ id }) => id),
-      exercisesById,
-    }
-
-    const program: Program = {
-      id,
-      name,
-      workoutData,
-    }
-
-    setProgram(program)
+    const updatedExercises = exercises.map((e) => ({ ...e, sets: [] }))
+    addWorkoutDay({ id, name, exercises: updatedExercises })
     navigate(PAGES.PROGRAMS.path)
   }
 
