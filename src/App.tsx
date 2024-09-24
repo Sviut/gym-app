@@ -1,9 +1,19 @@
-import { Outlet } from 'react-router-dom'
+import ProgramCard from '@/components/program-card.tsx'
 
-function App() {
+const PROGRAMS = [
+  { id: '1', name: 'Тренировка А' },
+  { id: '2', name: 'Тренировка B' },
+  { id: '3', name: 'Тренировка C' },
+]
+
+const App = () => {
   return (
-    <div className={'h-screen scroll-auto'}>
-      <Outlet />
+    <div className={'h-screen scroll-auto p-2'}>
+      <div className={'flex flex-col gap-2'}>
+        {PROGRAMS.map(({ id, name }) => (
+          <ProgramCard name={name} key={id} />
+        ))}
+      </div>
     </div>
   )
 }
