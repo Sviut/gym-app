@@ -36,7 +36,11 @@ const CreateProgramPage = () => {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: { name: '', id: uuid(), exercises: [] },
+    defaultValues: {
+      name: '',
+      id: uuid(),
+      exercises: [{ id: uuid(), name: '' }],
+    },
   })
 
   const onSubmit = ({ id, name, exercises }: z.infer<typeof FormSchema>) => {
