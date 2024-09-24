@@ -3,11 +3,19 @@ import { cn } from '@/lib/utils.ts'
 
 interface PageContainerProps {
   children?: ReactNode
-  isHeader?: boolean
+  header?: ReactNode
 }
 
-const PageContainer: FC<PageContainerProps> = ({ isHeader, children }) => {
-  return <div className={cn('p-5', isHeader && 'mt-[50px]')}>{children}</div>
+const PageContainer: FC<PageContainerProps> = ({ header, children }) => {
+  if (header) {
+    return (
+      <>
+        {header}
+        <div className={cn('p-5', 'mt-[50px]')}>{children}</div>
+      </>
+    )
+  }
+  return <div className={cn('p-5')}>{children}</div>
 }
 
 export default PageContainer
