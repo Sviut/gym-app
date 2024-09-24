@@ -1,8 +1,10 @@
 import useLocalStorage from '@/hooks/use-local-storage.ts'
+import { SetValue } from '@/types/workout-data.ts'
 
-interface WorkoutDay {
+export interface WorkoutDay {
   id: string
   name: string
+  sets: SetValue[]
 }
 
 interface Program {
@@ -22,10 +24,38 @@ export const useProgramData = () => {
     setProgram(updatedProgram)
   }
 
-  //TODO: to be done
-  // const getWorkoutDayById = (id: string) => {}
-  // const deleteWorkoutDayById = (id: string) => {}
-  // const updateWorkoutDayById = (id: string) => {}
+  const getWorkoutDayById = (id: string) => {
+    return program.workoutDays.find((workoutDay) => workoutDay.id === id)
+  }
 
-  return { addWorkoutDay }
+  const deleteWorkoutDayById = (id: string) => {
+    const filtered = program.workoutDays.filter(
+      (workoutDay) => workoutDay.id !== id
+    )
+
+    setProgram({ workoutDays: filtered })
+  }
+
+  const updateWorkoutDayById = (
+    id: string,
+    updatedDay: Partial<WorkoutDay>
+  ) => {
+    const currentWorkoutDay = getWorkoutDayById(id)
+    if (!currentWorkoutDay) return
+
+    const updatedWorkoutDay = { ...currentWorkoutDay, ...updatedDay }
+
+    const updatedWorkoutDays = program.workoutDays.map((workoutDay) =>
+      workoutDay.id === id ? updatedWorkoutDay : workoutDay
+    )
+
+    setProgram({ workoutDays: updatedWorkoutDays })
+  }
+
+  return {
+    addWorkoutDay,
+    getWorkoutDayById,
+    deleteWorkoutDayById,
+    updateWorkoutDayById,
+  }
 }

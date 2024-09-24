@@ -1,10 +1,10 @@
 export interface Exercise {
   id: string
   name: string
-  sets: Set[]
+  sets: SetValue[]
 }
 
-export interface Set {
+export interface SetValue {
   count: number
   weight: number
 }
