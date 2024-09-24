@@ -25,10 +25,10 @@ const ProgramsPage = () => {
       }
     >
       {program.workoutDays.map((element) => (
-        <div>
+        <Link to={`${PAGES.WORKOUT_DAY.path}/${element.id}`}>
           <div className={'p-5'}>{element.name}</div>
           <Separator />
-        </div>
+        </Link>
       ))}
       <Outlet />
     </PageContainer>

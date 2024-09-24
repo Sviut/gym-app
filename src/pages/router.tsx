@@ -4,6 +4,7 @@ import App from '@/App.tsx'
 import ProgramsPage from '@/pages/programs-page.tsx'
 import CreateProgramPage from '@/pages/create-program-page.tsx'
 import MainPage from './main-page'
+import WorkoutDayPage from '@/pages/workout-day-page.tsx'
 
 export const PAGES = {
   MAIN: {
@@ -17,6 +18,9 @@ export const PAGES = {
   CREATE_PROGRAM: {
     title: 'Добавить тренировку',
     path: '/programs/create',
+  },
+  WORKOUT_DAY: {
+    path: '/workout',
   },
 } as const
 
@@ -38,6 +42,10 @@ export const router = createBrowserRouter(
         {
           path: PAGES.CREATE_PROGRAM.path,
           element: <CreateProgramPage />,
+        },
+        {
+          path: PAGES.WORKOUT_DAY.path + '/:id',
+          element: <WorkoutDayPage />,
         },
       ],
     },
