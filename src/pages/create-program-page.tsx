@@ -69,7 +69,10 @@ const CreateProgramPage = () => {
       }
     >
       <Form {...form}>
-        <form className='w-full space-y-6'>
+        <form
+          className='w-full space-y-6'
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           <FormField
             control={form.control}
             name='name'

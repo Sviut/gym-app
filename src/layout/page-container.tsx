@@ -1,5 +1,4 @@
 import { FC, ReactNode } from 'react'
-import { cn } from '@/lib/utils.ts'
 
 interface PageContainerProps {
   children?: ReactNode
@@ -11,11 +10,11 @@ const PageContainer: FC<PageContainerProps> = ({ header, children }) => {
     return (
       <>
         {header}
-        <div className={cn('p-5', 'mt-[50px]')}>{children}</div>
+        <div className={'mt-[50px] p-5'}>{children}</div>
       </>
     )
   }
-  return <div className={cn('p-5')}>{children}</div>
+  return <div className={'p-5'}>{children}</div>
 }
 
 export default PageContainer
