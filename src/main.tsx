@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from '@/pages/error-page.tsx'
 import App from '@/App.tsx'
 import ProgramById from '@/pages/program-by-id.tsx'
+import Workout from '@/pages/workout.tsx'
 
 export const router = createBrowserRouter(
   [
@@ -16,6 +17,10 @@ export const router = createBrowserRouter(
     {
       path: '/program/:id',
       element: <ProgramById />,
+    },
+    {
+      path: '/workout/:id',
+      element: <Workout />,
     },
   ],
   { basename: import.meta.env.BASE_URL }

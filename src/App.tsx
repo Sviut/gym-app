@@ -8,7 +8,7 @@ const PROGRAMS = [
 
 const App = () => {
   return (
-    <div className={'h-screen scroll-auto p-2'}>
+    <div className={'p-2'}>
       <div className={'flex flex-col gap-2'}>
         {PROGRAMS.map(({ id, name }) => (
           <ProgramCard name={name} key={id} />
