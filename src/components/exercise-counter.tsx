@@ -29,7 +29,12 @@ export const ExerciseCounter: FC<ExerciseCounterProps> = ({
     <div className={'inline-flex flex-col'}>
       <div className={'text-center text-xs text-gray-400'}>{title}</div>
       <Card className={'flex gap-2 p-2'}>
-        <Button variant={'ghost'} size={'icon'} onClick={decrementCounter}>
+        <Button
+          type={'button'}
+          variant={'ghost'}
+          size={'icon'}
+          onClick={decrementCounter}
+        >
           <ArrowDown />
         </Button>
         <Input
@@ -38,7 +43,12 @@ export const ExerciseCounter: FC<ExerciseCounterProps> = ({
           value={value}
           onChange={(e) => onChange(+e.target.value)}
         />
-        <Button variant={'ghost'} size={'icon'} onClick={incrementCounter}>
+        <Button
+          type={'button'}
+          variant={'ghost'}
+          size={'icon'}
+          onClick={incrementCounter}
+        >
           <ArrowUp />
         </Button>
       </Card>
