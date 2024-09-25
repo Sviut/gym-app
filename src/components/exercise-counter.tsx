@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { Card } from '@/components/ui/card.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { ArrowDown, ArrowUp } from 'lucide-react'
@@ -6,19 +6,24 @@ import { Input } from '@/components/ui/input.tsx'
 
 interface ExerciseCounterProps {
   title: string
-  initialValue?: number
+  value: number
   step?: number
+  onChange: (value: number) => void
 }
 
 export const ExerciseCounter: FC<ExerciseCounterProps> = ({
   title,
-  initialValue = 0,
+  value,
   step = 1,
+  onChange,
 }) => {
-  const [counter, setCounter] = useState<number>(initialValue)
+  const incrementCounter = () => {
+    onChange(value + step)
+  }
 
-  const incrementCounter = () => setCounter((prevState) => (prevState += step))
-  const decrementCounter = () => setCounter((prevState) => (prevState -= step))
+  const decrementCounter = () => {
+    onChange(value - step)
+  }
 
   return (
     <div className={'inline-flex flex-col'}>
@@ -30,8 +35,8 @@ export const ExerciseCounter: FC<ExerciseCounterProps> = ({
         <Input
           inputMode='numeric'
           className={'text-center'}
-          value={counter}
-          onChange={(value) => setCounter(+value.target.value)}
+          value={value}
+          onChange={(e) => onChange(+e.target.value)}
         />
         <Button variant={'ghost'} size={'icon'} onClick={incrementCounter}>
           <ArrowUp />
