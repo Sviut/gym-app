@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from '@/pages/error-page.tsx'
 import App from '@/App.tsx'
 import ProgramById from '@/pages/program-by-id.tsx'
-import Workout from '@/pages/workout.tsx'
+import Workout from '@/pages/workout/workout.tsx'
 
 export const router = createBrowserRouter(
   [
