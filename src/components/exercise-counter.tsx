@@ -39,7 +39,7 @@ export const ExerciseCounter: FC<ExerciseCounterProps> = ({
         </Button>
         <Input
           inputMode='numeric'
-          className={'text-center'}
+          className={'text-center font-bold'}
           value={value}
           onChange={(e) => onChange(+e.target.value)}
         />

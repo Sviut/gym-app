@@ -9,14 +9,15 @@ interface ExerciseFormValues {
 }
 
 interface ExerciseFormProps {
+  initialValue?: ExerciseFormValues
   onSubmit: (data: ExerciseFormValues) => void
 }
 
-const ExerciseForm: FC<ExerciseFormProps> = ({ onSubmit }) => {
+const ExerciseForm: FC<ExerciseFormProps> = ({ onSubmit, initialValue }) => {
   const { handleSubmit, watch, setValue } = useForm<ExerciseFormValues>({
     defaultValues: {
-      weight: 0,
-      reps: 10,
+      weight: initialValue?.weight ?? 0,
+      reps: initialValue?.reps ?? 12,
     },
   })
 
