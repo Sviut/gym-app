@@ -1,17 +1,12 @@
 import { Card, CardHeader, CardTitle } from '@/components/ui/card.tsx'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Button } from '@/components/ui/button.tsx'
-import { useProgram } from '@/hooks/use-program.ts'
+import { useProgram } from '@/context/program-context.tsx'
 
 const ProgramById = () => {
   const { id } = useParams<{ id: string }>()
   const { getProgramById } = useProgram()
   const currentProgram = getProgramById(id)
-
-  const navigate = useNavigate()
-  const onClickHandler = () => {
-    navigate(`/workout/${currentProgram?.id}`)
-  }
 
   if (!currentProgram) {
     return <div>Program not found</div>
@@ -29,9 +24,13 @@ const ProgramById = () => {
         ))}
       </div>
 
-      <Button className={'mt-2 w-full'} size={'lg'} onClick={onClickHandler}>
-        Начать тренировку
-      </Button>
+      <Link
+        to={`/program/${currentProgram?.id}/workout/${currentProgram?.exercises[0].id}`}
+      >
+        <Button type={'button'} className={'mt-2 w-full'} size={'lg'}>
+          Начать тренировку
+        </Button>
+      </Link>
     </div>
   )
 }

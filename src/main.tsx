@@ -6,6 +6,7 @@ import ErrorPage from '@/pages/error-page.tsx'
 import App from '@/App.tsx'
 import ProgramById from '@/pages/program-by-id.tsx'
 import Workout from '@/pages/workout/workout.tsx'
+import { ProgramProvider } from '@/context/program-context.tsx'
 
 export const router = createBrowserRouter(
   [
@@ -19,7 +20,7 @@ export const router = createBrowserRouter(
       element: <ProgramById />,
     },
     {
-      path: '/workout/:id',
+      path: '/program/:programId/workout/:exerciseId',
       element: <Workout />,
     },
   ],
@@ -28,6 +29,8 @@ export const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ProgramProvider>
+      <RouterProvider router={router} />
+    </ProgramProvider>
   </StrictMode>
 )
