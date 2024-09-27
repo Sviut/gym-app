@@ -97,18 +97,18 @@ export const ProgramProvider = ({ children }: { children: ReactNode }) => {
           ...program,
           exercises: program.exercises.map((exercise) => ({
             ...exercise,
-            sets: exercise.sets.map((set) => ({
-              ...set, // Клонируем каждый сет
-              previous: set.current, // Перемещаем current в previous
-              current: undefined,
-            })),
+            sets: exercise.sets
+              .filter((set) => set.current)
+              .map((set) => ({
+                previous: set.current,
+              })),
           })),
         }
       }
       return program
     })
 
-    setPrograms(JSON.parse(JSON.stringify(updatedPrograms)))
+    setPrograms(updatedPrograms)
   }
 
   return (

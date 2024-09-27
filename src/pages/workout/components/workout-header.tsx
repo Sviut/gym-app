@@ -19,9 +19,7 @@ const WorkoutHeader: FC<WorkoutHeaderProps> = ({ title }) => {
 
   const onFinishHandler = () => {
     saveProgramHistory(programId)
-    // setTimeout(() => {
     navigate('/')
-    // }, 100)
   }
 
   return (

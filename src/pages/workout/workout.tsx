@@ -3,7 +3,7 @@ import WorkoutItem from '@/pages/workout/components/workout-item.tsx'
 import ExerciseForm from '@/pages/workout/components/exercise-form.tsx'
 import { useParams } from 'react-router-dom'
 import { Exercise, ExerciseValue } from '@/types/types.ts'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useProgram } from '@/context/program-context.tsx'
 
 const Workout = () => {
@@ -11,6 +11,10 @@ const Workout = () => {
   const { getExerciseById, updateExercise } = useProgram()
   const exercise = getExerciseById(exerciseId)
   const [currentRep, setCurrentRep] = useState(0)
+
+  useEffect(() => {
+    setCurrentRep(0)
+  }, [exerciseId])
 
   const onUpdateHandler = (value: ExerciseValue) => {
     if (!exercise) return
